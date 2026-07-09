@@ -1,6 +1,8 @@
-﻿using disco_app_MVC.Models.Negocio;
+﻿using disco_app_MVC.Models.Dominio;
+using disco_app_MVC.Models.Negocio;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace disco_app_MVC.Controllers
 {
@@ -24,16 +26,37 @@ namespace disco_app_MVC.Controllers
         // GET: DiscoController/Create
         public ActionResult Create()
         {
+            EstiloNegocio estiloNegocio = new EstiloNegocio();
+            TipoEdicionNegocio tipoEdicionNegocio = new TipoEdicionNegocio();
+
+            ViewBag.Estilos = new SelectList(estiloNegocio.listar(), "Id", "Descripcion");
+            ViewBag.TiposEdicion = new SelectList(tipoEdicionNegocio.listar(), "Id", "Descripcion");
+
             return View();
         }
 
         // POST: DiscoController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
+        public ActionResult Create(Disco disco)
         {
             try
             {
+                if (!ModelState.IsValid)
+                {
+                    EstiloNegocio estiloNegocio = new EstiloNegocio();
+                    TipoEdicionNegocio tipoEdicionNegocio = new TipoEdicionNegocio();
+
+                    ViewBag.Estilos = new SelectList(estiloNegocio.listar(), "Id", "Descripcion");
+                    ViewBag.TiposEdicion = new SelectList(tipoEdicionNegocio.listar(), "Id", "Descripcion");
+
+                    return View(disco);
+                }
+
+                DiscoNegocio negocio = new DiscoNegocio();
+                disco.FechaLanzamiento = System.DateTime.Now;
+                negocio.agregar(disco);
+
                 return RedirectToAction(nameof(Index));
             }
             catch
