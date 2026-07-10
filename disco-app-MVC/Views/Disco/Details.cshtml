@@ -1,0 +1,67 @@
+@model disco_app_MVC.Models.Dominio.Disco
+
+@{
+    ViewData["Title"] = "Detalle";
+}
+
+<h1>Detalle Discos</h1>
+
+<div>
+    <h4>Disco</h4>
+    <hr />
+    <div class="row">
+        <div class="col-8">
+            <div class="row">
+                <dt class = "col-sm-3">
+                    @Html.DisplayNameFor(model => model.Titulo)
+                </dt>
+                <dd class = "col-sm-9">
+                    @Html.DisplayFor(model => model.Titulo)
+                </dd>
+    
+                <dt class = "col-sm-3">
+                    Fecha de Lanzamiento
+                </dt>
+                <dd class = "col-sm-9">
+                    @Html.DisplayFor(model => model.FechaLanzamiento)
+                </dd>
+    
+                <dt class = "col-sm-3">
+                    @Html.DisplayNameFor(model => model.CantidadCanciones)
+                </dt>
+                <dd class = "col-sm-9">
+                    @Html.DisplayFor(model => model.CantidadCanciones)
+                </dd>
+    
+                <dt class = "col-sm-3">
+                    Url Tapa
+                </dt>
+                <dd class = "col-sm-9">
+                    @Html.DisplayFor(model => model.UrlTapa)
+                </dd>
+    
+                <dt class = "col-sm-3">
+                    @Html.DisplayNameFor(model => model.Estilo)
+                </dt>
+                <dd class = "col-sm-9">
+                    @Model.Estilo.Descripcion
+                </dd>
+    
+                <dt class = "col-sm-3">
+                    @Html.DisplayNameFor(model => model.TipoEdicion)
+                </dt>
+                <dd class = "col-sm-9">
+                    @Model.TipoEdicion.Descripcion
+                </dd>
+            </div>
+        </div>
+
+        <div class="col-4">
+            <img src="@Model.UrlTapa" />
+        </div>
+    </div>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model?.Id">Editar</a> |
+    <a asp-action="Index">Volver al listado</a>
+</div>

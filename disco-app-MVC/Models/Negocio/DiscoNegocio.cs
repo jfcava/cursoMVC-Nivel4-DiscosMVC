@@ -16,6 +16,7 @@ namespace disco_app_MVC.Models.Negocio
             List<Disco> lista = new List<Disco>();
             AccesoDatos datos = new AccesoDatos();
 
+
             try
             {               
                 datos.setearConsulta("select D.Id, Titulo, FechaLanzamiento, CantidadCanciones, " +

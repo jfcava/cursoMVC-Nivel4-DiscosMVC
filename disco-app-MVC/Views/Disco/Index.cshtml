@@ -4,11 +4,21 @@
     ViewData["Title"] = "Listado Discos";
 }
 
-<h1>Catálogo</h1>
+<h1>Catálogo de Discos</h1>
 
 <p>
     <a class="btn btn-primary" asp-action="Create">Agregar Nuevo</a>
 </p>
+<form asp-action="Index" method="get">
+    <div class="row">
+        <div class="col-10">
+            <input value="@ViewBag.Filtro" class="form-control" type="text" name="filtro" placeholder="Buscar por nombre..."/>
+        </div>
+        <div class="col-2">
+            <button class="btn btn-outline-success">Buscar</button>
+        </div>
+    </div>
+</form>
 <table class="table">
     <thead>
         <tr>

@@ -9,6 +9,6 @@ namespace disco_app_MVC.Models.Dominio
     public class TipoEdicion
     {
         public int Id { get; set; }
-        public string Descripcion { get; set; }
+        public string? Descripcion { get; set; }
     }
 }
